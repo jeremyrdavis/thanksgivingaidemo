@@ -1,12 +1,13 @@
 import {Button, Label, TextInput} from "flowbite-react";
 
-export function Register() {
+export function Register({updateWorkflow}) {
     return (
         <div>
                 <form id="registerform" className="flex max-w-md flex-col gap-4"
                       onSubmit={(e) => {
                         e.preventDefault();
                         console.log(e.target.email.value);
+                        updateWorkflow({email: e.target.email.value});
                     }}>
                     <div>
                         <div className="mb-2 block">
