@@ -6,8 +6,9 @@ export function Register({updateWorkflow}) {
                 <form id="registerform" className="flex max-w-md flex-col gap-4"
                       onSubmit={(e) => {
                         e.preventDefault();
-                        console.log(e.target.email.value);
-                        updateWorkflow({email: e.target.email.value});
+                        const emailAddress = e.target.email.value;
+                        console.log(emailAddress);
+                        updateWorkflow(emailAddress);
                     }}>
                     <div>
                         <div className="mb-2 block">
