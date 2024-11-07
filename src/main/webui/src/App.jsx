@@ -1,4 +1,5 @@
 import {useState} from "react";
+import ThanksgivingMenu from "./components/ThanksgivingMenu";
 import { Region } from "./components/Region";
 import { Register } from "./components/Register";
 import { CurrentState } from "./components/CurrentState";
@@ -9,6 +10,10 @@ function App() {
         const [step, setStep] = useState(1);
         const [email, setEmail] = useState("");
         const [stateCodes, setStateCodes] = useState([]);
+        const[thanksgivingMenu, setThanksGivingMenu] = useState({
+                mains: ["Turkey", "Ham", "Tofurkey"],
+                sides: ["Mashed Potatoes", "Green Beans", "Cranberry Sauce", "Mac & Cheese", "Sweet Potatoes", "Rolls"]
+        });
 
         const updateEmail = async (emailAddress) => {
                 console.log(emailAddress);
@@ -34,7 +39,7 @@ function App() {
                   <DarkThemeToggle/>
                       {step === 1 && <Register updateWorkflow={updateEmail}/>}
                       {step === 2 && <Region email={email} callback={updateStateCodes}/>}
-                      {step === 3 && <CurrentState email={email} states={stateCodes}/> }
+                      {step === 3 && <ThanksgivingMenu thanksgivingMenu={thanksgivingMenu} /> }
                   </main>
        );
   }
