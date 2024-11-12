@@ -5,6 +5,9 @@ import { Register } from "./components/Register";
 import { CurrentState } from "./components/CurrentState";
 import {DarkThemeToggle} from "flowbite-react";
 
+const menuUrl = 'http://localhost:8080/thanksgivingai/menu';
+
+
 function App() {
 
         const [step, setStep] = useState(1);
@@ -29,6 +32,17 @@ function App() {
 
         const createInvitation = async () => {
                 console.log("createInvitation");
+                console.log(JSON.stringify(thanksgivingMenu));
+                const response = await fetch(menuUrl, {
+                        method: 'POST',
+                        // headers: {
+                        //         'Content-Type': 'application/json'
+                        // },
+                        // body: JSON.stringify(thanksgivingMenu)
+                });
+                const data = await response.json();
+                console.log(data);
+                return data;
         }
 
         const logWorkflow = (msg) => {
