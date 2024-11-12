@@ -5,7 +5,7 @@ import { Register } from "./components/Register";
 import { CurrentState } from "./components/CurrentState";
 import {DarkThemeToggle} from "flowbite-react";
 
-const menuUrl = 'http://localhost:8080/thanksgivingai/menu';
+const menuUrl = 'http://localhost:8080/static/thanksgiving-menu-01.png';
 
 
 function App() {
@@ -33,14 +33,15 @@ function App() {
         const createInvitation = async () => {
                 console.log("createInvitation");
                 console.log(JSON.stringify(thanksgivingMenu));
-                const response = await fetch(menuUrl, {
-                        method: 'POST',
-                        // headers: {
-                        //         'Content-Type': 'application/json'
-                        // },
-                        // body: JSON.stringify(thanksgivingMenu)
-                });
-                const data = await response.json();
+                // const response = await fetch(menuUrl, {
+                //         method: 'GET',
+                //         headers: {
+                //                 'Content-Type': 'application/json',
+                //                 'Origin': 'http://localhost:3000'
+                //         },
+                //         // body: JSON.stringify(thanksgivingMenu)
+                // });
+                // const data = await response.json();
                 console.log(data);
                 return data;
         }
