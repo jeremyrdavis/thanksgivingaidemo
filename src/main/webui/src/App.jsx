@@ -27,6 +27,10 @@ function App() {
                 setStep(3);
         }
 
+        const createInvitation = async () => {
+                console.log("createInvitation");
+        }
+
         const logWorkflow = (msg) => {
                 console.log(msg);
                 console.log("email: ", email);
@@ -38,8 +42,8 @@ function App() {
                   <h1 className="text-2xl dark:text-white">Flowbite React + Vite</h1>
                   <DarkThemeToggle/>
                       {step === 1 && <Register updateWorkflow={updateEmail}/>}
-                      {step === 2 && <Region email={email} callback={updateStateCodes}/>}
-                      {step === 3 && <ThanksgivingMenu thanksgivingMenu={thanksgivingMenu} /> }
+                      {step === 2 && <Region callback={updateStateCodes}/>}
+                      {step === 3 && <ThanksgivingMenu thanksgivingMenu={thanksgivingMenu} invitationCallback={createInvitation}/> }
                   </main>
        );
   }
