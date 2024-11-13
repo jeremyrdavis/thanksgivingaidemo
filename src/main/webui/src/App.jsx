@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DarkThemeToggle } from "flowbite-react";
+import { Flowbite } from "flowbite-react";
 import ThanksgivingMenu from "./components/ThanksgivingMenu";
 import Region from "./components/Region";
 import Register from "./components/Register";
@@ -64,14 +64,14 @@ function App() {
         }
 
         return (
+            <Flowbite theme={{ mode: 'dark' }}>
               <main className="flex min-h-screen items-center justify-center gap-2 dark:bg-gray-800">
-                  <h1 className="text-2xl dark:text-white">Flowbite React + Vite</h1>
-                  <DarkThemeToggle/>
                       {step === 1 && <Register updateWorkflow={updateEmail}/>}
                       {step === 2 && <Region callback={updateStateCodes}/>}
                       {step === 3 && <ThanksgivingMenu thanksgivingMenu={thanksgivingMenu} invitationCallback={createInvitation}/> }
                       {step === 4 && <ThanksgivingInvitation invitation={invitation} invitationCallback={createPdf}/>}
                   </main>
+            </Flowbite>
        );
   }
 
