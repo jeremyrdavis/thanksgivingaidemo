@@ -3,10 +3,15 @@ import {Button, Label, List, Select} from "flowbite-react";
 export default function ThanksgivingInvitation({ invitation, invitationCallback }) {
 
         console.log("invitationCallback: ", invitationCallback);
+        console.log("ThanksgivingMenu: ", invitation.thanksgivingMenu);
+        console.log("Invitation URI: ", invitation.invitationUri);
         let thanksgivingMenu = invitation.thanksgivingMenu;
 
         return (
         <div>
+            <div>
+                <img src={invitation.invitationUri} alt="Thanksgiving Invitation" className="w-full" />
+            </div>
                 <form id="menuForm" className="flex max-w-md flex-col gap-4"
                     onSubmit={(e) => {
                         e.preventDefault();
