@@ -6,7 +6,7 @@ import { CurrentState } from "./components/CurrentState";
 import {DarkThemeToggle} from "flowbite-react";
 
 const menuUrl = 'http://localhost:8080/static/thanksgiving-menu-01.png';
-
+const invitationUrl = 'http://localhost:8080/thanksgivingai/invitation';
 
 function App() {
 
@@ -15,7 +15,8 @@ function App() {
         const [stateCodes, setStateCodes] = useState([]);
         const[thanksgivingMenu, setThanksGivingMenu] = useState({
                 mains: ["Turkey", "Ham", "Tofurkey"],
-                sides: ["Mashed Potatoes", "Green Beans", "Cranberry Sauce", "Mac & Cheese", "Sweet Potatoes", "Rolls"]
+                sides: ["Mashed Potatoes", "Green Beans", "Cranberry Sauce", "Mac & Cheese", "Sweet Potatoes", "Rolls"],
+                desserts: ["Pumpkin Pie", "Coconut Cake"]
         });
 
         const updateEmail = async (emailAddress) => {
@@ -32,16 +33,20 @@ function App() {
 
         const createInvitation = async () => {
                 console.log("createInvitation");
-                console.log(JSON.stringify(thanksgivingMenu));
-                // const response = await fetch(menuUrl, {
-                //         method: 'GET',
-                //         headers: {
-                //                 'Content-Type': 'application/json',
-                //                 'Origin': 'http://localhost:3000'
-                //         },
-                //         // body: JSON.stringify(thanksgivingMenu)
-                // });
-                // const data = await response.json();
+                let createMenuCommand = {
+                        thanksgivingMenu: thanksgivingMenu
+                }
+                const requestPayload = JSON.stringify(createMenuCommand);
+                console.log("requestPayload: ", requestPayload);
+                const response = await fetch(invitationUrl, {
+                        method: 'POST',
+                        headers: {
+                                'Content-Type': 'application/json',
+                                'Origin': 'http://localhost:3000'
+                        },
+                        body: requestPayload
+                });
+                const data = await response.json();
                 console.log(data);
                 return data;
         }

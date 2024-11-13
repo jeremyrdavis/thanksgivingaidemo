@@ -1,16 +1,26 @@
 package io.arrogantprogrammer.thanksgivingai.api;
 
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
+import io.quarkus.logging.Log;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.io.InputStream;
+import java.net.URI;
 
 @Path("/thanksgivingai")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class RestApi {
+
+    @POST
+    @Path("/invitation")
+    public Response createInvitation(CreateInvitationCommand createInvitationCommand) {
+        Log.debugf("Creating invitation for %s", createInvitationCommand.thanksgivingMenu());
+        ThanksgivingInvitation thanksgivingInvitation = new ThanksgivingInvitation(
+                URI.create("http://localhost:8080/static/thanksgiving-menu-01.png"), createInvitationCommand.thanksgivingMenu());
+        return Response.ok(thanksgivingInvitation).build();
+    }
 
     @POST
     @Path("/menu")
