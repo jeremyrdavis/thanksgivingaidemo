@@ -1,6 +1,6 @@
 import {Button, Label, TextInput} from "flowbite-react";
 
-export function Register({updateWorkflow}) {
+export default function Register({updateWorkflow}) {
     return (
         <div>
                 <form id="registerform" className="flex max-w-md flex-col gap-4"

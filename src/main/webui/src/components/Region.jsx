@@ -1,6 +1,6 @@
 import {Button, Label, Select} from "flowbite-react";
 
-export function Region({callback}) {
+export default function Region({callback}) {
     const states = [
         "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut",
         "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa",
