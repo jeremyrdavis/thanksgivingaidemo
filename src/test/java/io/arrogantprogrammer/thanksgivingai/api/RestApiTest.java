@@ -25,22 +25,23 @@ public class RestApiTest {
                 .post("/api/ai/menu")
                 .then()
                 .statusCode(200)
-                .body("thanksgivingMenu.email", is("jeremy.davis@redhat.com"));
+                .body("email", is("jeremy.davis@redhat.com"));
     }
 
     @Test
     public void testCreateInvitation() {
+
         String payload = """
-                 {"mains":["Turkey","Ham","Tofurkey"],"sides":["Mashed Potatoes","Green Beans","Cranberry Sauce","Mac & Cheese","Sweet Potatoes","Rolls"],"desserts":["Pumpkin Pie","Coconut Cake"]}
+                 { "thanksgivingMenu" : {"email": "jeremy.davis@redhat.com", "mains":["Turkey","Ham","Tofurkey"],"sides":["Mashed Potatoes","Green Beans","Cranberry Sauce","Mac & Cheese","Sweet Potatoes","Rolls"],"desserts":["Pumpkin Pie","Coconut Cake"]}}
                  """;
 
         given()
                 .header("Content-Type", "application/json")
                 .body(payload)
                 .when()
-                .post("/ai/invitation")
+                .post("/api/ai/invitation")
                 .then()
                 .statusCode(200)
-                .body("thanksgivingMenu.email", is("test@example.com"));
+                .body("thanksgivingMenu.email", is("jeremy.davis@redhat.com"));
     }
 }

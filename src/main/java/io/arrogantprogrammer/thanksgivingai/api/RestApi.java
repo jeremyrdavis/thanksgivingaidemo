@@ -1,11 +1,12 @@
 package io.arrogantprogrammer.thanksgivingai.api;
 
+import io.arrogantprogrammer.thanksgivingai.AiService;
 import io.quarkus.logging.Log;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import java.io.InputStream;
 import java.net.URI;
 
 @Path("/ai")
@@ -13,11 +14,8 @@ import java.net.URI;
 @Produces(MediaType.APPLICATION_JSON)
 public class RestApi {
 
-    @GET
-    @Path("/hello")
-    public Response hello() {
-        return Response.ok("Hello from Thanksgiving AI!").build();
-    }
+    @Inject
+    AiService aiService;
 
     @POST
     @Path("/invitation")
@@ -31,16 +29,10 @@ public class RestApi {
     @POST
     @Path("/menu")
     public Response createMenu(CreateMenuCommand createMenuCommand) {
-        return Response.ok("Hi").build();
+        Log.debugf("Creating menu for %s", createMenuCommand);
+        ThanksgivingMenu thanksgivingMenu = aiService.createMenu(createMenuCommand);
+        Log.debugf("Created %s for %s", thanksgivingMenu, createMenuCommand);
+        return Response.ok().entity(thanksgivingMenu).build();
     }
 
-    @GET
-    @Path("/menu")
-    public Response getMenu() {
-        InputStream imageStream = getClass().getClassLoader().getResourceAsStream("thanksgiving-menu-01.png");
-        if (imageStream == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-        return Response.ok(imageStream).type("image/png").build();
-    }
 }

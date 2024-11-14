@@ -1,6 +1,8 @@
 package io.arrogantprogrammer.thanksgivingai;
 
+import io.arrogantprogrammer.thanksgivingai.api.CreateInvitationCommand;
 import io.arrogantprogrammer.thanksgivingai.api.CreateMenuCommand;
+import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingInvitation;
 import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingMenu;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
@@ -24,5 +26,16 @@ public class AiServiceTest {
         assertTrue(thanksgivingMenu.mains().size() >= 1);
         assertTrue(thanksgivingMenu.sides().size() >= 2);
         assertTrue(thanksgivingMenu.desserts().size() >= 1);
+    }
+
+    @Test
+    public void testCreateInvitation() {
+        CreateInvitationCommand createInvitationCommand = MockObjects.createInvitationCommand();
+        ThanksgivingInvitation thanksgivingInvitation = aiService.createInvitation(createInvitationCommand);
+        assertNotNull(thanksgivingInvitation.thanksgivingMenu());
+        assertEquals(thanksgivingInvitation.thanksgivingMenu().email(), MockObjects.EMAIL);
+        assertEquals(thanksgivingInvitation.thanksgivingMenu().mains().size(), MockObjects.mains().size());
+        assertEquals(thanksgivingInvitation.thanksgivingMenu().sides().size(), MockObjects.sides().size());
+        assertEquals(thanksgivingInvitation.thanksgivingMenu().desserts().size(), MockObjects.desserts().size());
     }
 }
