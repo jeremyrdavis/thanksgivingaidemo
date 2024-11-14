@@ -8,10 +8,16 @@ import jakarta.ws.rs.core.Response;
 import java.io.InputStream;
 import java.net.URI;
 
-@Path("/thanksgivingai")
+@Path("/ai")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class RestApi {
+
+    @GET
+    @Path("/hello")
+    public Response hello() {
+        return Response.ok("Hello from Thanksgiving AI!").build();
+    }
 
     @POST
     @Path("/invitation")
@@ -24,12 +30,8 @@ public class RestApi {
 
     @POST
     @Path("/menu")
-    public Response createMenu() {
-        InputStream imageStream = getClass().getClassLoader().getResourceAsStream("thanksgiving-menu-01.png");
-        if (imageStream == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-        return Response.ok(imageStream).type("image/png").build();
+    public Response createMenu(CreateMenuCommand createMenuCommand) {
+        return Response.ok("Hi").build();
     }
 
     @GET

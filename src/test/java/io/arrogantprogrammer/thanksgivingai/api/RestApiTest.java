@@ -4,11 +4,29 @@ import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
 import static org.hamcrest.Matchers.is;
 
 @QuarkusTest
 public class RestApiTest {
+
+    @Test
+    public void testCreateMenu() {
+        String payload = """
+                {
+                    "email": "jeremy.davis@redhat.com",
+                    "postCodes" : ["None"]
+                }
+        """;
+
+        given()
+                .header("Content-Type", "application/json")
+                .body(payload)
+                .when()
+                .post("/api/ai/menu")
+                .then()
+                .statusCode(200)
+                .body("thanksgivingMenu.email", is("jeremy.davis@redhat.com"));
+    }
 
     @Test
     public void testCreateInvitation() {
@@ -20,7 +38,7 @@ public class RestApiTest {
                 .header("Content-Type", "application/json")
                 .body(payload)
                 .when()
-                .post("/thanksgivingai/invitation")
+                .post("/ai/invitation")
                 .then()
                 .statusCode(200)
                 .body("thanksgivingMenu.email", is("test@example.com"));
