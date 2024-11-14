@@ -1,21 +1,22 @@
 package io.arrogantprogrammer.thanksgivingai.api;
 
 import io.quarkus.logging.Log;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.net.URI;
 import java.util.ArrayList;
 
 @Path("/ai")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
 public class AiApi {
 
-    @POST
+    @GET
     @Path("/menu")
-    public Response createMenu(CreateMenuCommand createMenuCommand) {
-        Log.debugf("Creating menu for %s", createMenuCommand.email());
-        ThanksgivingMenu thanksgivingMenu = new ThanksgivingMenu(createMenuCommand.email(), new ArrayList<String>(){{
+    public Response createMenu() {
+        ThanksgivingMenu thanksgivingMenu = new ThanksgivingMenu("jeremy.davis@redhat.com", new ArrayList<String>(){{
             add("Brined and Roasted Turkey");
             add("Ham");
         }}, new ArrayList<String>(){{
