@@ -14,10 +14,74 @@ function App() {
         const [email, setEmail] = useState("");
         const [stateCodes, setStateCodes] = useState([]);
         const [thanksgivingMenu, setThanksGivingMenu] = useState({
-                mains: ["Turkey", "Ham", "Tofurkey"],
-                sides: ["Mashed Potatoes", "Green Beans", "Cranberry Sauce", "Mac & Cheese", "Sweet Potatoes", "Rolls"],
-                desserts: ["Pumpkin Pie", "Coconut Cake"]
+                mains: [{
+                        "item": "Turkey",
+                        "description": "Brined, Oven Roasted"
+                },
+                        {
+                                "item": "Tofurkey",
+                                "description": "Vegan"
+                        }],
+                sides: [                      {
+                        "item": "Mac & Cheese",
+                        "description": "Gooey, Cheesy"
+                },
+                        {
+                                "item": "Green Bean Casserole",
+                                "description": "Like Grandma used to make"
+                        },
+                        {
+                                "item": "Squash",
+                                "description": "Roasted"
+                        }
+                ],
+                desserts: [{
+                        "item": "Pumpkin Pie",
+                        "description": "Traditional"
+                }]
         });
+        /*
+                        {
+                  "thanksgivingMenu": {
+                    "email": "jeremy.davis@redhat.com",
+                    "mains": [
+                      {
+                        "item": "Turkey",
+                        "description": "Brined, Oven Roasted"
+                      },
+                      {
+                        "item": "Tofurkey",
+                        "description": "Vegan"
+                      }
+                    ],
+                    "sides": [
+                      {
+                        "item": "Mac & Cheese",
+                        "description": "Gooey, Cheesy"
+                      },
+                      {
+                        "item": "Green Bean Casserole",
+                        "description": "Like Grandma used to make"
+                      },
+                      {
+                        "item": "Green Bean Casserole",
+                        "description": "Like Grandma used to make"
+                      },
+                      {
+                        "item": "Squash",
+                        "description": "Roasted"
+                      }
+                    ],
+                    "desserts": [
+                      {
+                        "item": "Pumpkin Pie",
+                        "description": "Traditional"
+                      }
+                    ]
+                  }
+                }
+
+         */
         const [invitation, setInvitation] = useState();
 
         const updateEmail = async (emailAddress) => {
