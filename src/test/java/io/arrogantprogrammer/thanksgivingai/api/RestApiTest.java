@@ -11,7 +11,8 @@ public class RestApiTest {
 
     @Test
     public void testCreateMenu() {
-        String payload = """
+        String payload =
+        """
                 {
                     "email": "jeremy.davis@redhat.com",
                     "postCodes" : ["None"]
@@ -31,17 +32,55 @@ public class RestApiTest {
     @Test
     public void testCreateInvitation() {
 
-        String payload = """
-                 { "thanksgivingMenu" : {"email": "jeremy.davis@redhat.com", "mains":["Turkey","Ham","Tofurkey"],"sides":["Mashed Potatoes","Green Beans","Cranberry Sauce","Mac & Cheese","Sweet Potatoes","Rolls"],"desserts":["Pumpkin Pie","Coconut Cake"]}}
-                 """;
-
+        String invitationPayload = """
+                {
+                  "thanksgivingMenu": {
+                    "email": "jeremy.davis@redhat.com",
+                    "mains": [
+                      {
+                        "item": "Turkey",
+                        "description": "Brined, Oven Roasted"
+                      },
+                      {
+                        "item": "Tofurkey",
+                        "description": "Vegan"
+                      }
+                    ],
+                    "sides": [
+                      {
+                        "item": "Mac & Cheese",
+                        "description": "Gooey, Cheesy"
+                      },
+                      {
+                        "item": "Green Bean Casserole",
+                        "description": "Like Grandma used to make"
+                      },
+                      {
+                        "item": "Green Bean Casserole",
+                        "description": "Like Grandma used to make"
+                      },
+                      {
+                        "item": "Squash",
+                        "description": "Roasted"
+                      }
+                    ],
+                    "desserts": [
+                      {
+                        "item": "Pumpkin Pie",
+                        "description": "Traditional"
+                      }
+                    ]
+                  }
+                }
+                """;
         given()
                 .header("Content-Type", "application/json")
-                .body(payload)
+                .body(invitationPayload)
                 .when()
                 .post("/api/ai/invitation")
                 .then()
                 .statusCode(200)
                 .body("thanksgivingMenu.email", is("jeremy.davis@redhat.com"));
     }
+
 }

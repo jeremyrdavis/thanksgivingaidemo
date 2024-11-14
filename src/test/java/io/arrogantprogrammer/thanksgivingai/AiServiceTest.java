@@ -1,13 +1,11 @@
 package io.arrogantprogrammer.thanksgivingai;
 
-import io.arrogantprogrammer.thanksgivingai.api.CreateInvitationCommand;
-import io.arrogantprogrammer.thanksgivingai.api.CreateMenuCommand;
-import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingInvitation;
-import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingMenu;
+import io.arrogantprogrammer.thanksgivingai.api.*;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,13 +17,16 @@ public class AiServiceTest {
     AiService aiService;
 
     @Test
-    public void testAiService() {
+    public void testCreateMenu() {
         ThanksgivingMenu thanksgivingMenu = aiService.createMenu(new CreateMenuCommand("jeremy.davis@redhat.com", List.of("None")));
         assertNotNull(thanksgivingMenu);
         assertEquals(thanksgivingMenu.email(), "jeremy.davis@redhat.com");
         assertTrue(thanksgivingMenu.mains().size() >= 1);
         assertTrue(thanksgivingMenu.sides().size() >= 2);
         assertTrue(thanksgivingMenu.desserts().size() >= 1);
+        verifyDescriptions(thanksgivingMenu.mains());
+        verifyDescriptions(thanksgivingMenu.sides());
+        verifyDescriptions(thanksgivingMenu.desserts());
     }
 
     @Test
@@ -37,5 +38,15 @@ public class AiServiceTest {
         assertEquals(thanksgivingInvitation.thanksgivingMenu().mains().size(), MockObjects.mains().size());
         assertEquals(thanksgivingInvitation.thanksgivingMenu().sides().size(), MockObjects.sides().size());
         assertEquals(thanksgivingInvitation.thanksgivingMenu().desserts().size(), MockObjects.desserts().size());
+        verifyDescriptions(thanksgivingInvitation.thanksgivingMenu().mains());
+        verifyDescriptions(thanksgivingInvitation.thanksgivingMenu().sides());
+        verifyDescriptions(thanksgivingInvitation.thanksgivingMenu().desserts());
+    }
+
+    private void verifyDescriptions(List<ThanksgivingMenuItem> items){
+        for(ThanksgivingMenuItem item : items){
+            assertNotNull(item.description());
+            assertFalse(item.description().isBlank());
+        }
     }
 }

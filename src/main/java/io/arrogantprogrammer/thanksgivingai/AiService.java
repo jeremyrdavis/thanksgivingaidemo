@@ -1,13 +1,11 @@
 package io.arrogantprogrammer.thanksgivingai;
 
-import io.arrogantprogrammer.thanksgivingai.api.CreateInvitationCommand;
-import io.arrogantprogrammer.thanksgivingai.api.CreateMenuCommand;
-import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingInvitation;
-import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingMenu;
+import io.arrogantprogrammer.thanksgivingai.api.*;
 import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped
@@ -19,16 +17,30 @@ public class AiService {
         return thanksgivingMenu;
     }
 
-    private List<String> mockMains() {
-        return List.of("Turkey", "Ham", "Tofurkey");
+    private List<ThanksgivingMenuItem> mockMains() {
+        return new ArrayList<>(){{
+            add(new ThanksgivingMenuItem("Turkey", "Roasted"));
+            add(new ThanksgivingMenuItem( "Ham", "Honey Baked"));
+            add(new ThanksgivingMenuItem("Tofurkey", "Vegan"));
+        }};
     }
 
-    private List<String> mockSides() {
-        return List.of("Mashed Potatoes", "Green Beans", "Cranberry Sauce", "Mac & Cheese", "Sweet Potatoes", "Rolls");
+    private List<ThanksgivingMenuItem> mockSides() {
+        return new ArrayList<>(){{
+            add(new ThanksgivingMenuItem("Mashed Potatoes", "Creamy"));
+            add(new ThanksgivingMenuItem("Green Beans", "Almondine"));
+            add(new ThanksgivingMenuItem("Cranberry Sauce", "Homemade"));
+            add(new ThanksgivingMenuItem("Mac & Cheese", "Baked"));
+            add(new ThanksgivingMenuItem("Sweet Potatoes", "Candied"));
+            add(new ThanksgivingMenuItem("Rolls", "Buttery"));
+        }};
     }
 
-    private List<String> mockDesserts() {
-        return List.of("Pumpkin Pie", "Coconut Cake");
+    private List<ThanksgivingMenuItem> mockDesserts() {
+        return new ArrayList<>(){{
+            add(new ThanksgivingMenuItem("Pumpkin Pie", "Traditional"));
+            add(new ThanksgivingMenuItem("Coconut Cake", "Layered"));
+        }};
     }
 
     public ThanksgivingInvitation createInvitation(CreateInvitationCommand createInvitationCommand) {

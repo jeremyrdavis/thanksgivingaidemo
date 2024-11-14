@@ -2,7 +2,9 @@ package io.arrogantprogrammer.thanksgivingai;
 
 import io.arrogantprogrammer.thanksgivingai.api.CreateInvitationCommand;
 import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingMenu;
+import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingMenuItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MockObjects {
@@ -17,15 +19,25 @@ public class MockObjects {
         return new ThanksgivingMenu(EMAIL, MockObjects.mains(), MockObjects.sides(), MockObjects.desserts());
     }
 
-    public static List<String> mains() {
-        return List.of("Turkey", "Ham");
+    public static List<ThanksgivingMenuItem> mains() {
+
+        return new ArrayList<>(){{
+            add(new ThanksgivingMenuItem("Turkey", "Roasted"));
+            add(new ThanksgivingMenuItem( "Ham", "Honey Baked"));
+            add(new ThanksgivingMenuItem("Tofurkey", "Vegan"));
+        }};
     }
 
-    public static List<String> sides() {
-        return List.of("Mashed Potatoes", "Green Bean Casserole", "Cranberry Sauce");
+    public static List<ThanksgivingMenuItem> sides() {
+        return new ArrayList<>(){{
+            add(new ThanksgivingMenuItem("Mashed Potatoes", "Creamy"));
+            add(new ThanksgivingMenuItem("Green Beans", "Almondine"));
+            add(new ThanksgivingMenuItem("Cranberry Sauce", "Homemade"));
+            add(new ThanksgivingMenuItem("Mac & Cheese", "Baked"));
+        }};
     }
 
-    public static List<String> desserts() {
-        return List.of("Pumpkin Pie");
+    public static List<ThanksgivingMenuItem> desserts() {
+        return List.of(new ThanksgivingMenuItem("Pumpkin Pie", "Traditional"));
     }
 }
