@@ -21,17 +21,23 @@ export default function ThanksgivingInvitation({ invitation, invitationCallback 
                         <div className="mb-2 block">
                             <List>
                                 {thanksgivingMenu.mains.map((main) => (
-                                    <List.Item key={main}>{main}</List.Item>
+                                    <List.Item key={main.item}>
+                                        {main.item}<br/>{main.description}
+                                    </List.Item>
                                 ))}
                             </List>
                             <List>
                                 {thanksgivingMenu.sides.map((side) => (
-                                    <List.Item key={side}>{side}</List.Item>
+                                    <List.Item key={side.item}>
+                                        {side.item}<br/>{side.description}
+                                    </List.Item>
                                 ))}
                             </List>
                             <List>
                                 {thanksgivingMenu.desserts.map((dessert) => (
-                                    <List.Item key={dessert}>{dessert}</List.Item>
+                                    <List.Item key={dessert.item}>
+                                        {dessert.item}<br/> {dessert.description}
+                                    </List.Item>
                                 ))}
                             </List>
                         </div>

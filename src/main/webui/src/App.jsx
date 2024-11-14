@@ -6,7 +6,7 @@ import Register from "./components/Register";
 import ThanksgivingInvitation from "./components/ThanksgivingInvitation";
 
 const menuUrl = 'http://localhost:8080/static/thanksgiving-menu-01.png';
-const invitationUrl = 'http://localhost:8080/thanksgivingai/invitation';
+const invitationUrl = 'http://localhost:8080/api/ai/invitation';
 
 function App() {
 
@@ -40,48 +40,6 @@ function App() {
                         "description": "Traditional"
                 }]
         });
-        /*
-                        {
-                  "thanksgivingMenu": {
-                    "email": "jeremy.davis@redhat.com",
-                    "mains": [
-                      {
-                        "item": "Turkey",
-                        "description": "Brined, Oven Roasted"
-                      },
-                      {
-                        "item": "Tofurkey",
-                        "description": "Vegan"
-                      }
-                    ],
-                    "sides": [
-                      {
-                        "item": "Mac & Cheese",
-                        "description": "Gooey, Cheesy"
-                      },
-                      {
-                        "item": "Green Bean Casserole",
-                        "description": "Like Grandma used to make"
-                      },
-                      {
-                        "item": "Green Bean Casserole",
-                        "description": "Like Grandma used to make"
-                      },
-                      {
-                        "item": "Squash",
-                        "description": "Roasted"
-                      }
-                    ],
-                    "desserts": [
-                      {
-                        "item": "Pumpkin Pie",
-                        "description": "Traditional"
-                      }
-                    ]
-                  }
-                }
-
-         */
         const [invitation, setInvitation] = useState();
 
         const updateEmail = async (emailAddress) => {
