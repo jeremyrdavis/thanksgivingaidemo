@@ -1,3 +1,6 @@
+region:
+state: California
+stateCode: CA
 mains:
 item: Herb-Roasted Turkey with Meyer Lemon and Sage,
 description: Traditional turkey seasoned with California Meyer lemon, fresh sage, and olive oil, roasted to golden perfection for a citrusy, fragrant flavor.
