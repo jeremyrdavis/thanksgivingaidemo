@@ -1,3 +1,6 @@
+region: ATLANTIC
+state: Connecticut
+stateCode: CT
 mains:
 item: Roasted Turkey with Connecticut Spice Rub,
 description: A traditional turkey gets a twist with a spice rub made from local ingredients like bay leaf, allspice, and cayenne pepper.

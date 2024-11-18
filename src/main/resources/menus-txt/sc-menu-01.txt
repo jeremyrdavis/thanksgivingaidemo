@@ -1,3 +1,6 @@
+region: SOUTHERN
+state: South Carolina
+stateCode: SC
 mains:
 item: Lowcountry Smothered Turkey,
 description: A juicy turkey smothered in a rich, savory gravy made with smoked sausage, onions, and bell peppers, inspired by the flavors of the Lowcountry.

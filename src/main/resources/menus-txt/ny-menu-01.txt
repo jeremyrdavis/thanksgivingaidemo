@@ -1,3 +1,6 @@
+region: ATLANTIC
+state: New York
+stateCode: NY
 mains:
 item: Heritage Turkey,
 description: Brined in apple cider and maple syrup, roasted with Hudson Valley herbs

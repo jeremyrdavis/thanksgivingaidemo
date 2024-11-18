@@ -1,3 +1,6 @@
+region: WESTPAC
+state: Washington
+stateCode: WA
 mains:
 item: Cedar Plank Roasted Turkey,
 description: Whole turkey roasted on a cedar plank, infused with Washington’s coastal wood smoke and brushed with a rosemary and sage glaze.

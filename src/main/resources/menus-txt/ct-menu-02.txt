@@ -1,3 +1,6 @@
+region: ATLANTIC
+state: Connecticut
+stateCode: CT
 mains:
 item: Cider-Brined Turkey
 description: Traditional turkey brined in Connecticut apple cider, roasted to a golden crisp and infused with subtle hints of apple and cinnamon.

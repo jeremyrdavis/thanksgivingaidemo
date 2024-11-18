@@ -1,4 +1,4 @@
-region:
+region: WESTPAC
 state: California
 stateCode: CA
 mains:
