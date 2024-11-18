@@ -34,7 +34,7 @@ public class RestApiTest {
 
         String invitationPayload = """
                 {
-                  "thanksgivingMenu": {
+                  "thanksgivingMenuRecord": {
                     "email": "jeremy.davis@redhat.com",
                     "mains": [
                       {
@@ -80,7 +80,7 @@ public class RestApiTest {
                 .post("/api/ai/invitation")
                 .then()
                 .statusCode(200)
-                .body("thanksgivingMenu.email", is("jeremy.davis@redhat.com"));
+                .body("thanksgivingMenuRecord.email", is("jeremy.davis@redhat.com"));
     }
 
 }

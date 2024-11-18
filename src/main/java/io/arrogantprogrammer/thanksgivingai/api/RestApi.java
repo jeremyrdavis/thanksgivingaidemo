@@ -20,9 +20,9 @@ public class RestApi {
     @POST
     @Path("/invitation")
     public Response createInvitation(CreateInvitationCommand createInvitationCommand) {
-        Log.debugf("Creating invitation for %s", createInvitationCommand.thanksgivingMenu());
+        Log.debugf("Creating invitation for %s", createInvitationCommand.thanksgivingMenuRecord());
         ThanksgivingInvitation thanksgivingInvitation = new ThanksgivingInvitation(
-                URI.create("http://localhost:8080/static/thanksgiving-menu-01.png"), createInvitationCommand.thanksgivingMenu());
+                URI.create("http://localhost:8080/static/thanksgiving-menu-01.png"), createInvitationCommand.thanksgivingMenuRecord());
         return Response.ok(thanksgivingInvitation).build();
     }
 
@@ -30,9 +30,9 @@ public class RestApi {
     @Path("/menu")
     public Response createMenu(CreateMenuCommand createMenuCommand) {
         Log.debugf("Creating menu for %s", createMenuCommand);
-        ThanksgivingMenu thanksgivingMenu = aiService.createMenu(createMenuCommand);
-        Log.debugf("Created %s for %s", thanksgivingMenu, createMenuCommand);
-        return Response.ok().entity(thanksgivingMenu).build();
+        ThanksgivingMenuRecord thanksgivingMenuRecord = aiService.createMenu(createMenuCommand);
+        Log.debugf("Created %s for %s", thanksgivingMenuRecord, createMenuCommand);
+        return Response.ok().entity(thanksgivingMenuRecord).build();
     }
 
 }

@@ -1,8 +1,8 @@
 package io.arrogantprogrammer.thanksgivingai;
 
 import io.arrogantprogrammer.thanksgivingai.api.CreateInvitationCommand;
-import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingMenu;
-import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingMenuItem;
+import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingMenuRecord;
+import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingMenuItemRecord;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,29 +15,29 @@ public class MockObjects {
         return new CreateInvitationCommand(MockObjects.thanksgivingMenu());
     }
 
-    public static ThanksgivingMenu thanksgivingMenu() {
-        return new ThanksgivingMenu(EMAIL, MockObjects.mains(), MockObjects.sides(), MockObjects.desserts());
+    public static ThanksgivingMenuRecord thanksgivingMenu() {
+        return new ThanksgivingMenuRecord(EMAIL, MockObjects.mains(), MockObjects.sides(), MockObjects.desserts());
     }
 
-    public static List<ThanksgivingMenuItem> mains() {
+    public static List<ThanksgivingMenuItemRecord> mains() {
 
         return new ArrayList<>(){{
-            add(new ThanksgivingMenuItem("Turkey", "Roasted"));
-            add(new ThanksgivingMenuItem( "Ham", "Honey Baked"));
-            add(new ThanksgivingMenuItem("Tofurkey", "Vegan"));
+            add(new ThanksgivingMenuItemRecord("Turkey", "Roasted"));
+            add(new ThanksgivingMenuItemRecord( "Ham", "Honey Baked"));
+            add(new ThanksgivingMenuItemRecord("Tofurkey", "Vegan"));
         }};
     }
 
-    public static List<ThanksgivingMenuItem> sides() {
+    public static List<ThanksgivingMenuItemRecord> sides() {
         return new ArrayList<>(){{
-            add(new ThanksgivingMenuItem("Mashed Potatoes", "Creamy"));
-            add(new ThanksgivingMenuItem("Green Beans", "Almondine"));
-            add(new ThanksgivingMenuItem("Cranberry Sauce", "Homemade"));
-            add(new ThanksgivingMenuItem("Mac & Cheese", "Baked"));
+            add(new ThanksgivingMenuItemRecord("Mashed Potatoes", "Creamy"));
+            add(new ThanksgivingMenuItemRecord("Green Beans", "Almondine"));
+            add(new ThanksgivingMenuItemRecord("Cranberry Sauce", "Homemade"));
+            add(new ThanksgivingMenuItemRecord("Mac & Cheese", "Baked"));
         }};
     }
 
-    public static List<ThanksgivingMenuItem> desserts() {
-        return List.of(new ThanksgivingMenuItem("Pumpkin Pie", "Traditional"));
+    public static List<ThanksgivingMenuItemRecord> desserts() {
+        return List.of(new ThanksgivingMenuItemRecord("Pumpkin Pie", "Traditional"));
     }
 }

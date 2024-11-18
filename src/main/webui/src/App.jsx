@@ -7,6 +7,7 @@ import ThanksgivingInvitation from "./components/ThanksgivingInvitation";
 
 const menuUrl = 'http://localhost:8080/static/thanksgiving-menu-01.png';
 const invitationUrl = 'http://localhost:8080/api/ai/invitation';
+const getMenuUrl = 'http://localhost:8080/api/ai/menu';
 
 function App() {
 
@@ -50,8 +51,13 @@ function App() {
 
         const updateStateCodes = async (s) => {
                 console.log("updateStateCodes: states=" + s);
-                setStateCodes(s);
-                setStep(3);
+                getMenu(s);
+                // setStateCodes(s);
+                // let payload = getMenu(s);
+                // console.log("payload: ", payload);
+                // if(payload){
+                //         setStep(3);
+                // }
         }
 
         const createInvitation = async () => {
@@ -65,6 +71,7 @@ function App() {
                         method: 'POST',
                         headers: {
                                 'Content-Type': 'application/json',
+                                'Accept': 'application/json',
                                 'Origin': 'http://localhost:3000'
                         },
                         body: requestPayload
@@ -83,6 +90,27 @@ function App() {
                 console.log(msg);
                 console.log("email: ", email);
                 console.log("stateCodes: ", stateCodes);
+        }
+
+        const getMenu = async (s) => {
+                console.log("getMenu: states=" + s);
+                //let payload = JSON.stringify({email : email, stateCode: s});
+                let payload = "{\n" +
+                    "    \"email\":\"jeremy.davis@redhat.com\",\n" +
+                    "    \"stateCodes\": [\"None\"]\n" +
+                    "}";
+                console.log("payload: ", payload);
+                const response = await fetch(getMenuUrl, {
+                        method: 'POST',
+                        headers: {
+                                'Content-Type': 'application/json'
+                        },
+                        body: payload
+                });
+                const data = await response.json();
+                console.log(data);
+                setThanksGivingMenu(data);
+                return true;
         }
 
         return (
