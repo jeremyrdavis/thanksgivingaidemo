@@ -24,18 +24,6 @@ public class ThanksgivingMenu {
         return NONE_PROMPT;
     }
 
-//            if (states.size() == 1) {
-//            if("None".equals(states.get(0))){
-//                return NONE_PROMPT;
-//            }else{
-//                return String.format(SINGLE_PROMPT, PostalCodeUtility.getStateNameFromPostalStateCode(states.get(0)), states.get(0), states.get(0), states.get(0));
-//            }
-//        }else{
-//            return NONE_PROMPT;
-//        }
-//    }
-
-
     static final String NONE_PROMPT = """
             Create a Thanksgiving menu that combines traditional dishes with modern American inspired dishes. The menu should have 2 mains, one of which should be turkey, at least 4 side items, and at least 1 dessert. 
             Each main, side, and dessert should have a name and a brief description, for example, name: Turkey description: Citrus Brined and Roasted. 

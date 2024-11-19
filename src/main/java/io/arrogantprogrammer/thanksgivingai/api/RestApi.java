@@ -8,6 +8,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
 import java.net.URI;
+import java.net.URL;
 
 @Path("/ai")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -21,8 +22,9 @@ public class RestApi {
     @Path("/invitation")
     public Response createInvitation(CreateInvitationCommand createInvitationCommand) {
         Log.debugf("Creating invitation for %s", createInvitationCommand.thanksgivingMenuRecord());
+        URL imageUrl = aiService.imageUrl();
         ThanksgivingInvitation thanksgivingInvitation = new ThanksgivingInvitation(
-                URI.create("http://localhost:8080/static/thanksgiving-menu-01.png"), createInvitationCommand.thanksgivingMenuRecord());
+                imageUrl, createInvitationCommand.thanksgivingMenuRecord());
         Log.debugf("Created %s for %s", thanksgivingInvitation, createInvitationCommand);
         return Response.ok(thanksgivingInvitation).build();
     }
