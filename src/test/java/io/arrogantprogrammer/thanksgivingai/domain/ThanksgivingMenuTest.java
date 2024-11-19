@@ -18,12 +18,12 @@ public class ThanksgivingMenuTest {
 
     @Test
     public void testCreatePromptForSingle() {
-        String result = String.format(ThanksgivingMenu.SINGLE_PROMPT, "California", "CA");
+        String result = String.format(ThanksgivingMenu.SINGLE_PROMPT, "California", "California", "WESTPAC");
         System.out.println(result);
         String prompt = ThanksgivingMenu.createPrompt(List.of("CA"));
         assertNotNull(prompt);
         assertTrue(prompt.contains("California"));
-        assertTrue(prompt.contains("CA"));
+        assertTrue(prompt.contains("WESTPAC"));
     }
 
 }

@@ -1,8 +1,9 @@
 package io.arrogantprogrammer.thanksgivingai.domain;
 
-import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingMenuRecord;
-import io.arrogantprogrammer.thanksgivingai.utils.PostalCodeUtility;
+import io.arrogantprogrammer.thanksgivingai.utils.StateCodeUtility;
+import io.arrogantprogrammer.thanksgivingai.utils.StateCodeMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ThanksgivingMenu {
@@ -10,27 +11,41 @@ public class ThanksgivingMenu {
     public static String createPrompt(List<String> states) {
         if (states != null && states.size() == 0) {
             return NONE_PROMPT;
-        }else if (states.size() == 1) {
-            if("None".equals(states.get(0))){
-                return NONE_PROMPT;
-            }else{
-                return String.format(SINGLE_PROMPT, PostalCodeUtility.getStateNameFromPostalStateCode(states.get(0)), states.get(0), states.get(0));
+        } else {
+            List<StateCodeMapping> stateCodeMappings = new ArrayList<>(states.size());
+            states.forEach(state -> {
+                stateCodeMappings.add(StateCodeUtility.getStateCodeMapping(state));
+            });
+            if (stateCodeMappings.size() == 1) {
+                StateCodeMapping stateCodeMapping = stateCodeMappings.get(0);
+                return String.format(SINGLE_PROMPT, stateCodeMapping.stateName(), stateCodeMapping.stateName(), stateCodeMapping.region(), stateCodeMapping.postCode());
             }
-        }else{
-            return NONE_PROMPT;
         }
+        return NONE_PROMPT;
     }
 
+//            if (states.size() == 1) {
+//            if("None".equals(states.get(0))){
+//                return NONE_PROMPT;
+//            }else{
+//                return String.format(SINGLE_PROMPT, PostalCodeUtility.getStateNameFromPostalStateCode(states.get(0)), states.get(0), states.get(0), states.get(0));
+//            }
+//        }else{
+//            return NONE_PROMPT;
+//        }
+//    }
 
-    protected static final String NONE_PROMPT = """
+
+    static final String NONE_PROMPT = """
             Create a Thanksgiving menu that combines traditional dishes with modern American inspired dishes. The menu should have 2 mains, one of which should be turkey, at least 4 side items, and at least 1 dessert. 
             Each main, side, and dessert should have a name and a brief description, for example, name: Turkey description: Citrus Brined and Roasted. 
             Return the menu in the following json format: { \\\"mains\\\":[{\\\"item\\\": \\\"string\\\"}] ,\\\"sides\\\":[{\\\"item\\\":\\\"string\\\",\\\"description\\\":\\\"string\\\"}],\\\"desserts\\\":[{\\\"item\\\":string\\\",\\\"description\\\":\\\"string\\\"}].  Return only json in the specified, valid format.
         """;
 
-    protected static final String SINGLE_PROMPT = """
+    static final String SINGLE_PROMPT = """
             Create a Thanksgiving menu that combines traditional dishes with %s inspired dishes. 
             The menu should have 2 mains, one of which should be turkey, at least 4 side items, and at least 1 dessert. Each main, side, and dessert should have a name and a brief description, for example, name: Turkey description: Citrus Brined and Roasted. 
+            Example menus should be from the state of %s and/or from the %s region of the US.
             Return the menu in the following json format: { \\\"mains\\\":[{\\\"item\\\": \\\"string\\\"}] ,\\\"sides\\\":[{\\\"item\\\":\\\"string\\\",\\\"description\\\":\\\"string\\\"}],\\\"desserts\\\":[{\\\"item\\\":string\\\",\\\"description\\\":\\\"string\\\"}]. Return only json in the specified, valid format.";
         """;
 

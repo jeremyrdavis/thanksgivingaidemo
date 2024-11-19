@@ -94,11 +94,7 @@ function App() {
 
         const getMenu = async (s) => {
                 console.log("getMenu: states=" + s);
-                //let payload = JSON.stringify({email : email, stateCode: s});
-                let payload = "{\n" +
-                    "    \"email\":\"jeremy.davis@redhat.com\",\n" +
-                    "    \"stateCodes\": [\"None\"]\n" +
-                    "}";
+                let payload = JSON.stringify({email : email, stateCodes: s});
                 console.log("payload: ", payload);
                 const response = await fetch(getMenuUrl, {
                         method: 'POST',
