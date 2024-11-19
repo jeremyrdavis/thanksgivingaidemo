@@ -51,7 +51,22 @@ function App() {
 
         const updateStateCodes = async (s) => {
                 console.log("updateStateCodes: states=" + s);
-                getMenu(s);
+                console.log("getMenu: states=" + s);
+                let payload = JSON.stringify({email : email, stateCodes: s});
+                console.log("payload: ", payload);
+                const response = await fetch(getMenuUrl, {
+                        method: 'POST',
+                        headers: {
+                                'Content-Type': 'application/json'
+                        },
+                        body: payload
+                });
+                const data = await response.json();
+                console.log(data);
+                setThanksGivingMenu(data);
+                setStep(3);
+
+                // getMenu(s);
                 // setStateCodes(s);
                 // let payload = getMenu(s);
                 // console.log("payload: ", payload);
@@ -93,20 +108,6 @@ function App() {
         }
 
         const getMenu = async (s) => {
-                console.log("getMenu: states=" + s);
-                let payload = JSON.stringify({email : email, stateCodes: s});
-                console.log("payload: ", payload);
-                const response = await fetch(getMenuUrl, {
-                        method: 'POST',
-                        headers: {
-                                'Content-Type': 'application/json'
-                        },
-                        body: payload
-                });
-                const data = await response.json();
-                console.log(data);
-                setThanksGivingMenu(data);
-                return true;
         }
 
         return (
