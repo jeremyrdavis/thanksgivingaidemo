@@ -1,19 +1,32 @@
 package io.arrogantprogrammer.thanksgivingai;
 
 import io.arrogantprogrammer.thanksgivingai.api.*;
+import io.arrogantprogrammer.thanksgivingai.rest.ChatGPTService;
+import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 
 @QuarkusTest
 public class AiServiceTest {
 
+    @InjectMock
+    ChatGPTService chatGPTService;
+
     @Inject
     AiService aiService;
+
+    @BeforeEach
+    public void setup(){
+        Mockito.when(chatGPTService.chat(any(String.class))).thenReturn(MockObjects.thanksgivingMenu());
+    }
 
     @Test
     public void testCreateMenu() {

@@ -20,7 +20,7 @@ public class ThanksgivingMenuTest {
     public void testCreatePromptForSingle() {
         String result = String.format(ThanksgivingMenu.SINGLE_PROMPT, "California", "California", "WESTPAC");
         System.out.println(result);
-        String prompt = ThanksgivingMenu.createPrompt(List.of("CA"));
+        String prompt = ThanksgivingMenu.createPrompt(List.of("California"));
         assertNotNull(prompt);
         assertTrue(prompt.contains("California"));
         assertTrue(prompt.contains("WESTPAC"));

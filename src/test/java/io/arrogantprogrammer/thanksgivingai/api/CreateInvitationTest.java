@@ -26,7 +26,7 @@ public class CreateInvitationTest {
         Mockito.when(aiService.createInvitation(Mockito.any(CreateInvitationCommand.class)))
                 .thenReturn(new ThanksgivingInvitation(
                         URI.create("http://localhost:8080/static/thanksgiving-menu-01.png"),
-                        new ThanksgivingMenuRecord("jeremy.davis@rehdat.com",
+                        new ThanksgivingMenuRecord("jeremy.davis@redhat.com",
                                 List.of(new ThanksgivingMenuItemRecord("Turkey", "Brined, Oven Roasted"),
                                         new ThanksgivingMenuItemRecord("Tofurkey", "Vegan")),
                                 List.of(new ThanksgivingMenuItemRecord("Mac & Cheese", "Gooey, Cheesy"),
@@ -44,8 +44,8 @@ public class CreateInvitationTest {
                 .post("/api/ai/invitation")
                 .then()
                 .statusCode(200)
-                .body("thanksgivingMenuRecord.email", is("jeremy.davis@redhat.com"))
-                .body("thanksgivingMenuRecord.mains[0].item", is("Turkey"));
+                .body("thanksgivingMenu.email", is("jeremy.davis@redhat.com"))
+                .body("thanksgivingMenu.mains[0].item", is("Turkey"));
 
     }
 
