@@ -1,39 +1,55 @@
 package io.arrogantprogrammer.thanksgivingai.api;
 
+import io.arrogantprogrammer.thanksgivingai.AiService;
+import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import java.net.URI;
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
 
 @QuarkusTest
-public class RestApiTest {
+public class CreateInvitationTest {
 
-    @Test
-    public void testCreateMenu() {
-        String payload =
-        """
-                {
-                    "email": "jeremy.davis@redhat.com",
-                    "postCodes" : ["None"]
-                }
-        """;
+    @InjectMock
+    AiService aiService;
 
-        given()
-                .header("Content-Type", "application/json")
-                .body(payload)
-                .when()
-                .post("/api/ai/menu")
-                .then()
-                .statusCode(200)
-                .body("email", is("jeremy.davis@redhat.com"));
+    @BeforeEach
+    public void setup() {
+        // Mock the AiService
+        Mockito.when(aiService.createInvitation(Mockito.any(CreateInvitationCommand.class)))
+                .thenReturn(new ThanksgivingInvitation(
+                        URI.create("http://localhost:8080/static/thanksgiving-menu-01.png"),
+                        new ThanksgivingMenuRecord("jeremy.davis@rehdat.com",
+                                List.of(new ThanksgivingMenuItemRecord("Turkey", "Brined, Oven Roasted"),
+                                        new ThanksgivingMenuItemRecord("Tofurkey", "Vegan")),
+                                List.of(new ThanksgivingMenuItemRecord("Mac & Cheese", "Gooey, Cheesy"),
+                                        new ThanksgivingMenuItemRecord("Green Bean Casserole", "Like Grandma used to make"),
+                                        new ThanksgivingMenuItemRecord("Green Bean Casserole", "Like Grandma used to make")),
+                                List.of(new ThanksgivingMenuItemRecord("Pumpkin Pie", "Classic")))));
     }
 
     @Test
     public void testCreateInvitation() {
+        given()
+                .header("Content-Type", "application/json")
+                .body(invitationPayload)
+                .when()
+                .post("/api/ai/invitation")
+                .then()
+                .statusCode(200)
+                .body("thanksgivingMenuRecord.email", is("jeremy.davis@redhat.com"))
+                .body("thanksgivingMenuRecord.mains[0].item", is("Turkey"));
 
-        String invitationPayload = """
+    }
+
+    String invitationPayload = """
                 {
                   "thanksgivingMenuRecord": {
                     "email": "jeremy.davis@redhat.com",
@@ -74,15 +90,4 @@ public class RestApiTest {
                   }
                 }
                 """;
-        given()
-                .header("Content-Type", "application/json")
-                .body(invitationPayload)
-                .when()
-                .post("/api/ai/invitation")
-                .then()
-                .statusCode(200)
-                .body("thanksgivingMenuRecord.email", is("jeremy.davis@redhat.com"))
-                .body("thanksgivingMenuRecord.mains[0].item", contains("Turkey"));
     }
-
-}

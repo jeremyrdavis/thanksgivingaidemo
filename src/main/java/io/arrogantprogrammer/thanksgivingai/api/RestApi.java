@@ -23,6 +23,7 @@ public class RestApi {
         Log.debugf("Creating invitation for %s", createInvitationCommand.thanksgivingMenuRecord());
         ThanksgivingInvitation thanksgivingInvitation = new ThanksgivingInvitation(
                 URI.create("http://localhost:8080/static/thanksgiving-menu-01.png"), createInvitationCommand.thanksgivingMenuRecord());
+        Log.debugf("Created %s for %s", thanksgivingInvitation, createInvitationCommand);
         return Response.ok(thanksgivingInvitation).build();
     }
 

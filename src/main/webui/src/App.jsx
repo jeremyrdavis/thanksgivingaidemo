@@ -57,7 +57,8 @@ function App() {
                 const response = await fetch(getMenuUrl, {
                         method: 'POST',
                         headers: {
-                                'Content-Type': 'application/json'
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
                         },
                         body: payload
                 });
@@ -65,34 +66,25 @@ function App() {
                 console.log(data);
                 setThanksGivingMenu(data);
                 setStep(3);
-
-                // getMenu(s);
-                // setStateCodes(s);
-                // let payload = getMenu(s);
-                // console.log("payload: ", payload);
-                // if(payload){
-                //         setStep(3);
-                // }
         }
 
         const createInvitation = async () => {
                 console.log("createInvitation");
-                let createMenuCommand = {
-                        thanksgivingMenu: thanksgivingMenu
+                let createInvitationCommand = {
+                        thanksgivingMenuRecord: thanksgivingMenu
                 }
-                const requestPayload = JSON.stringify(createMenuCommand);
-                console.log("requestPayload: ", requestPayload);
+                console.log("createInvitationCommand: ", JSON.stringify(createInvitationCommand));
                 const response = await fetch(invitationUrl, {
                         method: 'POST',
                         headers: {
                                 'Content-Type': 'application/json',
                                 'Accept': 'application/json',
-                                'Origin': 'http://localhost:3000'
                         },
-                        body: requestPayload
+                        body: JSON.stringify(createInvitationCommand)
                 });
                 const data = await response.json();
-                console.log(data);
+                console.log("invitation result: " + data);
+                console.log("invitation menu: " + data.thanksgivingMenu);
                 setInvitation(data);
                 setStep(4);
         }
