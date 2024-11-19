@@ -7,12 +7,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.net.URI;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 @QuarkusTest
 public class CreateInvitationTest {
@@ -23,16 +24,20 @@ public class CreateInvitationTest {
     @BeforeEach
     public void setup() {
         // Mock the AiService
-        Mockito.when(aiService.createInvitation(Mockito.any(CreateInvitationCommand.class)))
-                .thenReturn(new ThanksgivingInvitation(
-                        URI.create("http://localhost:8080/static/thanksgiving-menu-01.png"),
-                        new ThanksgivingMenuRecord("jeremy.davis@redhat.com",
-                                List.of(new ThanksgivingMenuItemRecord("Turkey", "Brined, Oven Roasted"),
-                                        new ThanksgivingMenuItemRecord("Tofurkey", "Vegan")),
-                                List.of(new ThanksgivingMenuItemRecord("Mac & Cheese", "Gooey, Cheesy"),
-                                        new ThanksgivingMenuItemRecord("Green Bean Casserole", "Like Grandma used to make"),
-                                        new ThanksgivingMenuItemRecord("Green Bean Casserole", "Like Grandma used to make")),
-                                List.of(new ThanksgivingMenuItemRecord("Pumpkin Pie", "Classic")))));
+        try {
+            Mockito.when(aiService.createInvitation(Mockito.any(CreateInvitationCommand.class)))
+                    .thenReturn(new ThanksgivingInvitation(
+                            new URL("http://localhost:8080/static/thanksgiving-menu-01.png"),
+                            new ThanksgivingMenuRecord("jeremy.davis@redhat.com",
+                                    List.of(new ThanksgivingMenuItemRecord("Turkey", "Brined, Oven Roasted"),
+                                            new ThanksgivingMenuItemRecord("Tofurkey", "Vegan")),
+                                    List.of(new ThanksgivingMenuItemRecord("Mac & Cheese", "Gooey, Cheesy"),
+                                            new ThanksgivingMenuItemRecord("Green Bean Casserole", "Like Grandma used to make"),
+                                            new ThanksgivingMenuItemRecord("Green Bean Casserole", "Like Grandma used to make")),
+                                    List.of(new ThanksgivingMenuItemRecord("Pumpkin Pie", "Classic")))));
+        } catch (MalformedURLException e) {
+            assertNull(e);
+        }
     }
 
     @Test
