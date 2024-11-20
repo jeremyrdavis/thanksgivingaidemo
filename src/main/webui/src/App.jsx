@@ -53,39 +53,39 @@ function App() {
                 console.log("updateStateCodes: states=" + s);
                 console.log("getMenu: states=" + s);
                 let payload = JSON.stringify({email : email, stateCodes: s});
-                console.log("payload: ", payload);
-                const response = await fetch(getMenuUrl, {
-                        method: 'POST',
-                        headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json'
-                        },
-                        body: payload
-                });
-                const data = await response.json();
-                console.log(data);
-                setThanksGivingMenu(data);
+                // console.log("payload: ", payload);
+                // const response = await fetch(getMenuUrl, {
+                //         method: 'POST',
+                //         headers: {
+                //                 'Content-Type': 'application/json',
+                //                 'Accept': 'application/json'
+                //         },
+                //         body: payload
+                // });
+                // const data = await response.json();
+                // console.log(data);
+                // setThanksGivingMenu(data);
                 setStep(3);
         }
 
         const createInvitation = async () => {
                 console.log("createInvitation");
-                let createInvitationCommand = {
-                        thanksgivingMenuRecord: thanksgivingMenu
-                }
-                console.log("createInvitationCommand: ", JSON.stringify(createInvitationCommand));
-                const response = await fetch(invitationUrl, {
-                        method: 'POST',
-                        headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json',
-                        },
-                        body: JSON.stringify(createInvitationCommand)
-                });
-                const data = await response.json();
-                console.log("invitation result: " + data);
-                console.log("invitation menu: " + data.thanksgivingMenu);
-                setInvitation(data);
+                // let createInvitationCommand = {
+                //         thanksgivingMenuRecord: thanksgivingMenu
+                // }
+                // console.log("createInvitationCommand: ", JSON.stringify(createInvitationCommand));
+                // const response = await fetch(invitationUrl, {
+                //         method: 'POST',
+                //         headers: {
+                //                 'Content-Type': 'application/json',
+                //                 'Accept': 'application/json',
+                //         },
+                //         body: JSON.stringify(createInvitationCommand)
+                // });
+                // const data = await response.json();
+                // console.log("invitation result: " + data);
+                // console.log("invitation menu: " + data.thanksgivingMenu);
+                setInvitation({"invitationUrl": "public/thanksgiving-menu-01.png", thanksgivingMenu});
                 setStep(4);
         }
 
