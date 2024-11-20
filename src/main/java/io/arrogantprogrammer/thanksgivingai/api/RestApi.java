@@ -22,7 +22,7 @@ public class RestApi {
     @Path("/invitation")
     public Response createInvitation(CreateInvitationCommand createInvitationCommand) {
         Log.debugf("Creating invitation for %s", createInvitationCommand.thanksgivingMenuRecord());
-        URL imageUrl = aiService.imageUrl();
+        URL imageUrl = aiService.imageUrl(createInvitationCommand.thanksgivingMenuRecord());
         ThanksgivingInvitation thanksgivingInvitation = new ThanksgivingInvitation(
                 imageUrl, createInvitationCommand.thanksgivingMenuRecord());
         Log.debugf("Created %s for %s", thanksgivingInvitation, createInvitationCommand);

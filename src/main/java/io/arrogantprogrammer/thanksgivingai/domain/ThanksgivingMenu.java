@@ -1,5 +1,6 @@
 package io.arrogantprogrammer.thanksgivingai.domain;
 
+import io.arrogantprogrammer.thanksgivingai.api.ThanksgivingMenuRecord;
 import io.arrogantprogrammer.thanksgivingai.utils.StateCodeUtility;
 import io.arrogantprogrammer.thanksgivingai.utils.StateCodeMapping;
 
@@ -37,4 +38,27 @@ public class ThanksgivingMenu {
             Return the menu in the following json format: { \\\"mains\\\":[{\\\"item\\\": \\\"string\\\"}] ,\\\"sides\\\":[{\\\"item\\\":\\\"string\\\",\\\"description\\\":\\\"string\\\"}],\\\"desserts\\\":[{\\\"item\\\":string\\\",\\\"description\\\":\\\"string\\\"}]. Return only json in the specified, valid format.";
         """;
 
+    static final String IMAGE_PROMPT = """
+        Create an invitation for a Thanksgiving dinner. The invitation should include the following details:
+        Please join me, %s, for Thanksgiving!
+        We will have:
+        """;
+
+    public static String createInvitationPrompt(ThanksgivingMenuRecord thanksgivingMenuRecord) {
+        StringBuilder stringBuilder = new StringBuilder(IMAGE_PROMPT)
+                .append("\nMains");
+        thanksgivingMenuRecord.mains().forEach(main -> {
+            stringBuilder.append("\n- ").append(main.item());
+            stringBuilder.append("\n  ").append(main.description());
+        });
+        thanksgivingMenuRecord.sides().forEach(side -> {
+            stringBuilder.append("\n- ").append(side.item());
+            stringBuilder.append("\n  ").append(side.description());
+        });
+        thanksgivingMenuRecord.desserts().forEach(dessert -> {
+            stringBuilder.append("\n- ").append(dessert.item());
+            stringBuilder.append("\n  ").append(dessert.description());
+        });
+        return stringBuilder.toString();
+    }
 }
