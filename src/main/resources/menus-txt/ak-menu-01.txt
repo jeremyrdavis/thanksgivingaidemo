@@ -1,6 +1,6 @@
 region: WESTPAC
 state: California
-stateCode: CA
+stateCode: AK
 mains:
 item: Cedar Plank Roasted Turkey
 description: Juicy turkey infused with the smoky aroma of cedar, a nod to Pacific Northwest flavors.
