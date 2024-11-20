@@ -53,18 +53,18 @@ function App() {
                 console.log("updateStateCodes: states=" + s);
                 console.log("getMenu: states=" + s);
                 let payload = JSON.stringify({email : email, stateCodes: s});
-                console.log("payload: ", payload);
-                const response = await fetch(getMenuUrl, {
-                        method: 'POST',
-                        headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json'
-                        },
-                        body: payload
-                });
-                const data = await response.json();
-                console.log(data);
-                setThanksGivingMenu(data);
+                // console.log("payload: ", payload);
+                // const response = await fetch(getMenuUrl, {
+                //         method: 'POST',
+                //         headers: {
+                //                 'Content-Type': 'application/json',
+                //                 'Accept': 'application/json'
+                //         },
+                //         body: payload
+                // });
+                // const data = await response.json();
+                // console.log(data);
+                // setThanksGivingMenu(data);
                 setStep(3);
         }
 
