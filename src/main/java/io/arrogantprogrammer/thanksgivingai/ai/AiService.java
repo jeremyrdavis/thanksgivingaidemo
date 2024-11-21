@@ -11,6 +11,7 @@ import jakarta.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -25,23 +26,23 @@ public class AiService {
     @Inject
     ImageModel imageModel;
 
-    public URL imageUrl(final ThanksgivingMenuRecord thanksgivingMenuRecord) {
-
+    public ThanksgivingInvitation createInvitation(final ThanksgivingMenuRecord thanksgivingMenuRecord) {
+        Log.debugf("Creating invitation for %s", thanksgivingMenuRecord);
         String prompt = ThanksgivingMenu.createInvitationPrompt(thanksgivingMenuRecord);
 
         var image = imageModel.generate(prompt);
         var uri = image.content().url();
         var desc = image.content().revisedPrompt();
+        var uuid = UUID.randomUUID();
+        var file = new File("src/main/webui/public/" + uuid + ".png");
         try {
-            var file = new File("src/main/webui/public/" +UUID.randomUUID() + ".png");
             Files.copy(uri.toURL().openStream(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            Log.debugf("file://" + file.getAbsolutePath());
-            return uri.toURL();
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        Log.debugf("file://" + file.getAbsolutePath());
+
+        return new ThanksgivingInvitation("/public/" + uuid + ".png", thanksgivingMenuRecord);
     }
 
     public ThanksgivingMenuRecord createMenu(CreateMenuCommand createMenuCommand) {
@@ -51,12 +52,4 @@ public class AiService {
         return result;
     }
 
-    public ThanksgivingInvitation createInvitation(CreateInvitationCommand createInvitationCommand) {
-        Log.debugf("Creating invitation for %s", createInvitationCommand.thanksgivingMenuRecord());
-        try {
-            return new ThanksgivingInvitation(new URL("http://localhost:8080/static/thanksgiving-menu-01.jpg"), createInvitationCommand.thanksgivingMenuRecord());
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
