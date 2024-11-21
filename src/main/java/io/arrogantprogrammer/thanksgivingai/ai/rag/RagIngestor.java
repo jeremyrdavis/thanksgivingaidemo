@@ -1,4 +1,4 @@
-package io.arrogantprogrammer.thanksgivingai.rag;
+package io.arrogantprogrammer.thanksgivingai.ai.rag;
 
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;

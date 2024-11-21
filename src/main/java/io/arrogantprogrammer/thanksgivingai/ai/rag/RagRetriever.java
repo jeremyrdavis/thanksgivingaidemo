@@ -1,4 +1,4 @@
-package io.arrogantprogrammer.thanksgivingai.rag;
+package io.arrogantprogrammer.thanksgivingai.ai.rag;
 
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.embedding.EmbeddingModel;

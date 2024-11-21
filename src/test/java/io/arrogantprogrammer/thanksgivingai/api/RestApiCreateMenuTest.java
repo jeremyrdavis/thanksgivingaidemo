@@ -1,6 +1,6 @@
 package io.arrogantprogrammer.thanksgivingai.api;
 
-import io.arrogantprogrammer.thanksgivingai.AiService;
+import io.arrogantprogrammer.thanksgivingai.ai.AiService;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.BeforeEach;

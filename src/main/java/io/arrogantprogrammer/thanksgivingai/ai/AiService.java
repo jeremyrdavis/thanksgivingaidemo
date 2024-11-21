@@ -1,4 +1,4 @@
-package io.arrogantprogrammer.thanksgivingai;
+package io.arrogantprogrammer.thanksgivingai.ai;
 
 import dev.langchain4j.model.image.ImageModel;
 import io.arrogantprogrammer.thanksgivingai.api.*;
@@ -11,12 +11,9 @@ import jakarta.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @ApplicationScoped

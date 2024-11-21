@@ -1,5 +1,6 @@
 package io.arrogantprogrammer.thanksgivingai;
 
+import io.arrogantprogrammer.thanksgivingai.ai.AiService;
 import io.arrogantprogrammer.thanksgivingai.api.*;
 import io.arrogantprogrammer.thanksgivingai.rest.ChatGPTService;
 import io.quarkus.test.InjectMock;
