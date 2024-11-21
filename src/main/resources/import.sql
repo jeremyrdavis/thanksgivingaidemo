@@ -1,0 +1,3 @@
+INSERT INTO 'thanksgiving_menu_item' (id, item, description, state, region) VALUES (1, 'Pecan-Smoked Turkey', 'Traditional turkey smoked over Georgia pecan wood, bringing a rich, nutty flavor to the holiday classic.', 'GA', 'SOUTHERN');
+INSERT INTO 'thanksgiving_menu_item' (id, item, description, state, region) VALUES (1, 'Cider-Brined Turkey', 'Traditional turkey brined in Connecticut apple cider, roasted to a golden crisp and infused with subtle hints of apple and cinnamon.', 'GA', 'SOUTHERN');
+INSERT INTO 'thanksgiving_menu_item' (id, item, description, state, region) VALUES (2, 'Cranberry Sauce', 'A sweet and tangy sauce made from fresh cranberries, sugar, and a hint of orange zest.', 'MA', 'NEW_ENGLAND');
