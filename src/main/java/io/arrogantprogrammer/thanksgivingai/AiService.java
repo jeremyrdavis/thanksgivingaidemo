@@ -36,7 +36,7 @@ public class AiService {
         var uri = image.content().url();
         var desc = image.content().revisedPrompt();
         try {
-            var file = new File(UUID.randomUUID() + ".png");
+            var file = new File("src/main/webui/public/" +UUID.randomUUID() + ".png");
             Files.copy(uri.toURL().openStream(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
             Log.debugf("file://" + file.getAbsolutePath());
             return uri.toURL();

@@ -39,9 +39,7 @@ public class ThanksgivingMenu {
         """;
 
     static final String IMAGE_PROMPT = """
-        Create an invitation for a Thanksgiving dinner. The invitation should include the following details:
-        Please join me, %s, for Thanksgiving!
-        We will have:
+        Create an invitation for a Thanksgiving dinner. The invitation should include visuals for Thanksgiving and the following menu items:
         """;
 
     public static String createInvitationPrompt(ThanksgivingMenuRecord thanksgivingMenuRecord) {
@@ -59,6 +57,7 @@ public class ThanksgivingMenu {
             stringBuilder.append("\n- ").append(dessert.item());
             stringBuilder.append("\n  ").append(dessert.description());
         });
+        stringBuilder.append("\nDo not include any text in the image.");
         return stringBuilder.toString();
     }
 }
