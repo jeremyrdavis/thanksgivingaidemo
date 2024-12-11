@@ -2,8 +2,8 @@ region: WESTPAC
 state: Washington
 stateCode: WA
 mains:
-item: Cedar Plank Roasted Turkey,
-description: Whole turkey roasted on a cedar plank, infused with Washington’s coastal wood smoke and brushed with a rosemary and sage glaze.
+item: Roasted Turkey,
+description: Whole turkey, infused with Washington’s coastal wood smoke and brushed with a rosemary and sage glaze.
 item: Northwest Salmon with Maple Glaze,
 description: Fresh-caught Pacific salmon, marinated in a maple and soy glaze, then roasted and garnished with lemon and herbs.
 sides:

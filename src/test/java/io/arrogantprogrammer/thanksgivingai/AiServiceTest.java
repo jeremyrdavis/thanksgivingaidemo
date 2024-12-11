@@ -2,7 +2,7 @@ package io.arrogantprogrammer.thanksgivingai;
 
 import io.arrogantprogrammer.thanksgivingai.ai.AiService;
 import io.arrogantprogrammer.thanksgivingai.api.*;
-import io.arrogantprogrammer.thanksgivingai.rest.ChatGPTService;
+import io.arrogantprogrammer.thanksgivingai.rest.OpenAIService;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
@@ -19,14 +19,14 @@ import static org.mockito.ArgumentMatchers.any;
 public class AiServiceTest {
 
     @InjectMock
-    ChatGPTService chatGPTService;
+    OpenAIService openAIService;
 
     @Inject
     AiService aiService;
 
     @BeforeEach
     public void setup(){
-        Mockito.when(chatGPTService.chat(any(String.class))).thenReturn(MockObjects.thanksgivingMenu());
+        Mockito.when(openAIService.chat(any(String.class))).thenReturn(MockObjects.thanksgivingMenu());
     }
 
     @Test

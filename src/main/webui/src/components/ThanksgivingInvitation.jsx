@@ -23,7 +23,7 @@ export default function ThanksgivingInvitation({ invitation, invitationCallback 
                         </div>
                     </div>
                 </div>
-                <Button type="submit">Would You Like a PDF of Your Invitation?</Button>
+                <Button type="submit">Happy Thanksgiving!</Button>
             </form>
         </div>
         );

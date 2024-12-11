@@ -2,8 +2,8 @@ region: WESTPAC
 state: California
 stateCode: CA
 mains:
-item: Cedar Plank Roasted Turkey
-description: Juicy turkey slow-roasted on a cedar plank infused with aromatic herbs and spices, offering a subtle smoky flavor.
+item: Herb Roasted Turkey
+description: Juicy turkey slow-roasted with aromatic herbs and spices, offering a subtle smoky flavor.
 item: California Veggie-Stuffed Portobello Steaks,
 description: Grilled Portobello mushrooms stuffed with a vibrant mix of quinoa, avocado, and roasted California vegetables topped with a balsamic glaze.
 sides:

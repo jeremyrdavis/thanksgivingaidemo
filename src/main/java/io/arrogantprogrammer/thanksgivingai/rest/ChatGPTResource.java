@@ -12,7 +12,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 public class ChatGPTResource {
 
     @Inject
-    ChatGPTService assistant;
+    OpenAIService assistant;
 
     @ConfigProperty(name = "quarkus.langchain4j.openai.api-key")
     String apiKey;

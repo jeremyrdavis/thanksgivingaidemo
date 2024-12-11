@@ -3,16 +3,13 @@ package io.arrogantprogrammer.thanksgivingai.ai;
 import dev.langchain4j.model.image.ImageModel;
 import io.arrogantprogrammer.thanksgivingai.api.*;
 import io.arrogantprogrammer.thanksgivingai.domain.ThanksgivingMenu;
-import io.arrogantprogrammer.thanksgivingai.rest.ChatGPTService;
+import io.arrogantprogrammer.thanksgivingai.rest.OpenAIService;
 import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.UUID;
@@ -21,7 +18,7 @@ import java.util.UUID;
 public class AiService {
 
     @Inject
-    ChatGPTService chatGPTService;
+    OpenAIService openAIService;
 
     @Inject
     ImageModel imageModel;
@@ -47,7 +44,7 @@ public class AiService {
 
     public ThanksgivingMenuRecord createMenu(CreateMenuCommand createMenuCommand) {
         String prompt = ThanksgivingMenu.createPrompt(createMenuCommand.stateCodes());
-        ThanksgivingMenuRecord result = chatGPTService.chat(prompt);
+        ThanksgivingMenuRecord result = openAIService.chat(prompt);
         Log.debugf("Created menu %s", result);
         return result;
     }
